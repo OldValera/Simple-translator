@@ -1,14 +1,20 @@
 
 import './App.css';
-import OutPutBlock from './Output/OutPustBlock';
-import InputBlock from './Input/InputBlock';
-
+import NavBar from './components/NavBar/NavBar';
+import Accor from './components/Accor/Accor';
+import MainBlock from './components/MainBlock.jsx/MainBlock';
+import TestForm from './textForm/testForm';
 function App() {
   return (
-    <div className="App">
-      <InputBlock />
-      <OutPutBlock />
-    </div>
+    <>
+      <NavBar />
+      <Accor />
+      <MainBlock />
+
+      {/* <TestForm /> */}
+    </>
+
+
   );
 }
 

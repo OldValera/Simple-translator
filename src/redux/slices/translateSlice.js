@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AsyncThunkAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { act } from "react-dom/test-utils";
 
-export const translateRequest = createAsyncThunk('translate/requestState', async (value) => {
+export const translateRequest = createAsyncThunk('translate/requestState', (value) => {
+
     const encodedParams = new URLSearchParams();
     encodedParams.append("q", "Hello, world!");
     encodedParams.append("target", "ru");
     encodedParams.append("source", "en");
-
     const options = {
         method: 'POST',
         url: 'https://deep-translate1.p.rapidapi.com/language/translate/v2',
@@ -16,11 +16,9 @@ export const translateRequest = createAsyncThunk('translate/requestState', async
             'X-RapidAPI-Key': 'c9c78f6fd2msh549a3cc43e7210ep13b2a8jsn32765281bda6',
             'X-RapidAPI-Host': 'deep-translate1.p.rapidapi.com'
         },
-        data: `{"q":"${value}","sourse":"ru","target":"en"}`
+        data: `{"q":"${value.txt}","sourse":"${value.leng}","target":"${value.transTo}"}`
     };
-
     const request = axios.request(options).then(function (response) {
-        // console.log(response.data);
         return response.data;
     }).catch(function (error) {
         console.error(error);
@@ -30,14 +28,29 @@ export const translateRequest = createAsyncThunk('translate/requestState', async
 
 const initialState = {
 
+    activeLenguage: 'en',
+    translateTo: 'ru',
+    currentText: '',
     translatedText: '',
-    status: 'loading'
+    status: '',
+    favoirets: {
+        items: []
+    }
 
 }
 const translateSlice = createSlice({
     name: 'translate',
     initialState,
     reducers: {
+        setActivelenguage(state, action) {
+            state.activeLenguage = action.payload
+        },
+        setTranslateLenguage(state, action) {
+            state.translateTo = action.payload
+        },
+        saveFavouireteWord(state, action) {
+            state.favoirets.items.push(action.payload)
+        }
 
     },
     extraReducers: {
@@ -47,9 +60,9 @@ const translateSlice = createSlice({
         },
         [translateRequest.fulfilled]: (state, action) => {
             state.status = 'loaded'
-            // console.log(action.payload)
             state.translatedText = action.payload.data.translations.translatedText;
-
+            state.currentText = action.meta.arg.txt;
+            console.log(state)
         },
         [translateRequest.rejected]: (state) => {
             state.status = 'error'
@@ -58,7 +71,9 @@ const translateSlice = createSlice({
 
     }
 })
+
 export default translateSlice.reducer;
+export const { setActivelenguage, setTranslateLenguage, saveFavouireteWord } = translateSlice.actions;
 
 
 

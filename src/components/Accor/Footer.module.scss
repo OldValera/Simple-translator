@@ -1,0 +1,16 @@
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .item {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+
+    }
+
+    .accordion {
+        width: 160px;
+    }
+}
