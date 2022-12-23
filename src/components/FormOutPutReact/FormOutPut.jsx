@@ -40,7 +40,7 @@ const FormOutPut = () => {
 
                         <ListGroup.Item style={{ cursor: 'pointer' }} active={translateTo === 'en' ? true : false} eventKey={"en"}>Английский</ListGroup.Item>
                         <ListGroup.Item eventKey={"ru"} active={translateTo === 'ru' ? true : false}>Русский</ListGroup.Item>
-                        <ListGroup.Item eventKey={"de"} active={translateTo === 'de' ? true : false}>Немецкий</ListGroup.Item>
+                        <ListGroup.Item eventKey={"de"} active={translateTo === 'de' ? true : false}>Немец</ListGroup.Item>
                     </ListGroup>
                     <div>
                         <Button onClick={() => saveWord()} variant="outline-warning" className={styles.butt}> в избранное</Button>
