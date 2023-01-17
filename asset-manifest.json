@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Simple-translator/static/css/main.11fc3450.css",
+    "main.js": "/Simple-translator/static/js/main.70188673.js",
+    "index.html": "/Simple-translator/index.html",
+    "main.11fc3450.css.map": "/Simple-translator/static/css/main.11fc3450.css.map",
+    "main.70188673.js.map": "/Simple-translator/static/js/main.70188673.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.11fc3450.css",
+    "static/js/main.70188673.js"
+  ]
+}
